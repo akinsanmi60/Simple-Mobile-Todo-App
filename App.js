@@ -4,6 +4,8 @@ import {
   View,
   FlatList,
   Alert,
+  TouchableNativeFeedback,
+  Keyboard,
 } from "react-native";
 import React, { useState } from "react";
 import Header from "./components/header";
@@ -41,7 +43,14 @@ export default function App() {
       ]);
     }
   };
+
+  // function to dismiss keyboard
+  const dismissKeyboardHandler = () =>{
+    Keyboard.dismiss();
+  };
   return (
+    <TouchableNativeFeedback
+     onPress={dismissKeyboardHandler}>
     <View style={styles.container}>
       <Header />
       <View style={styles.formcontainer}>
@@ -57,6 +66,7 @@ export default function App() {
         />
       </View>
     </View>
+    </TouchableNativeFeedback> 
   );
 }
 
