@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import Header from "./components/header";
 import Form from "./components/form";
@@ -21,10 +27,19 @@ export default function App() {
 
   //function for submitting
   const submitHandler = (text) => {
-    SetTodos((prevTodos) => {
-      // Math.random() * 1000 is use to generate key number for new todo
-      return [...prevTodos, { text: text, key: Math.random() * 1000 }];
-    });
+    // adding a condition when submitting i.e if the text length is greater than 4words then submit but if not show Alert
+    if (text.length > 4) {
+      SetTodos((prevTodos) => {
+        // Math.random() * 1000 is use to generate key number for new todo
+        return [...prevTodos, { text: text, key: Math.random() * 1000 }];
+        setText("");
+      });
+      //Alert obj is always imported
+    } else {
+      Alert.alert("HEY!", "The input value must be 4 characters long", [
+        { text: "Understood", onPress: () => console.log("alert closed") },
+      ]);
+    }
   };
   return (
     <View style={styles.container}>
