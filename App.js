@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,7 +8,6 @@ import {
   TouchableNativeFeedback,
   Keyboard,
 } from "react-native";
-import React, { useState } from "react";
 import Header from "./components/header";
 import Form from "./components/form";
 import TodoItem from "./components/todo-item";
@@ -45,28 +45,27 @@ export default function App() {
   };
 
   // function to dismiss keyboard
-  const dismissKeyboardHandler = () =>{
+  const dismissKeyboardHandler = () => {
     Keyboard.dismiss();
   };
   return (
-    <TouchableNativeFeedback
-     onPress={dismissKeyboardHandler}>
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.formcontainer}>
-        <Form text={text} setText={setText} submitHandler={submitHandler} />
-      </View>
+    <TouchableNativeFeedback onPress={dismissKeyboardHandler}>
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.formcontainer}>
+          <Form text={text} setText={setText} submitHandler={submitHandler} />
 
-      <View style={styles.todlistcontainer}>
-        <FlatList
-          data={todos}
-          renderItem={({ item }) => (
-            <TodoItem item={item} deleteHandler={deleteHandler} />
-          )}
-        />
+          <View style={styles.todlistcontainer}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <TodoItem item={item} deleteHandler={deleteHandler} />
+              )}
+            />
+          </View>
+        </View>
       </View>
-    </View>
-    </TouchableNativeFeedback> 
+    </TouchableNativeFeedback>
   );
 }
 
@@ -74,5 +73,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  formcontainer: {
+    flex: 1,
+    padding: 10,
+  },
+  todlistcontainer: {
+    marginTop: 10,
+    flex: 1,
   },
 });
