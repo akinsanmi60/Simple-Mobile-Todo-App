@@ -34,8 +34,8 @@ export default function App() {
       SetTodos((prevTodos) => {
         // Math.random() * 1000 is use to generate key number for new todo
         return [...prevTodos, { text: text, key: Math.random() * 1000 }];
-        setText("");
       });
+      setText(""); //clears input value
       //Alert obj is always imported
     } else {
       Alert.alert("HEY!", "The input value must be 4 characters long", [

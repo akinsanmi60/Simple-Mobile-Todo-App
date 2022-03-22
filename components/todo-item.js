@@ -4,14 +4,15 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 const TodoItem = ({ item, deleteHandler }) => {
   return (
-    <TouchableOpacity
-      style={styles.todositemlist}
-      onPress={() => deleteHandler(item.key)}
-    >
+    <TouchableOpacity style={styles.todositemlist}>
       <View>
         <Text style={styles.item}>{item.text}</Text>
       </View>
-      <MaterialIcons name="delete" style={styles.icon} />
+      <MaterialIcons
+        name="delete"
+        style={styles.icon}
+        onPress={() => deleteHandler(item.key)}
+      />
     </TouchableOpacity>
   );
 };
